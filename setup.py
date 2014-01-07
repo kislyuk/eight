@@ -16,7 +16,7 @@ setup(
     description='Python 2 to the power of 3. A lightweight porting helper library.',
     long_description=open('README.rst').read(),
     install_requires=install_requires,
-    packages = find_packages(),
+    packages = find_packages(exclude=['test']),
     include_package_data=True,
     platforms=['MacOS X', 'Posix'],
     classifiers=[

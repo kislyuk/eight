@@ -2,17 +2,19 @@ eight: Python 2 to the power of 3
 =================================
 Eight is a Python module that provides a minimalist compatibility layer between Python 3 and 2. Eight lets you write
 code for Python 3.3+ while providing limited compatibility with Python 2.7 with no code changes.  Eight is inspired by
-`six <https://pythonhosted.org/six/>`_ and `nine <https://github.com/nandoflorestan/nine>`_, but is more lightweight,
-easier to use, and unambiguously biased toward Python 3 code: if you remove eight from your code, it will continue to
-function exactly as it did with eight on Python 3.
+`six <https://pythonhosted.org/six/>`_, `nine <https://github.com/nandoflorestan/nine>`_, and `python-future
+<https://github.com/PythonCharmers/python-future>`_, but is more lightweight, easier to use, and unambiguously biased
+toward Python 3 code: if you remove eight from your code, it will continue to function exactly as it did with eight on
+Python 3.
 
 To write code for Python 3 that is portable to Python 2, you may also want to read Armin Ronacher's excellent `Python 3
-porting guide <http://lucumr.pocoo.org/2013/5/21/porting-to-python-3-redux/>`_.
+porting guide <http://lucumr.pocoo.org/2013/5/21/porting-to-python-3-redux/>`_, as well as the official
+`porting guide <http://docs.python.org/3/howto/pyporting.html>`_.
 
 Writing ``from eight import *`` in your code is a no-op in Python 3. In Python 2, it binds a bunch of Python 3 names to
 their Python 2 equivalents. Also, if you need to import a module that was renamed in Python 3, writing ``from eight
 import <module>`` will do the right thing (equivalent to ``import <module>`` on Python 3 and ``import <old_name> as
-<module>`` on Python 2.
+<module>`` on Python 2).
 
 Installation
 ------------
@@ -27,6 +29,13 @@ Synopsis
 
     from eight import *
     from eight import queue
+
+If you use ``print``, division, non-ASCII literals, or relative imports, you should also add this `future import
+<http://docs.python.org/3/library/__future__.html>`_ at the top of each source file:
+
+.. code-block:: python
+
+    from __future__ import (print_function, division, unicode_literals, absolute_import)
 
 Links
 -----

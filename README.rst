@@ -8,8 +8,8 @@ code for Python 3.3+ while providing limited compatibility with Python 2.7 with 
 easier to use, and unambiguously biased toward Python 3 code: if you remove eight from your code, it will continue to
 function exactly as it did with eight on Python 3.
 
-To write code for Python 3 that is portable to Python 2, you may also want to read Armin Ronacher's excellent `Python 3
-porting guide <http://lucumr.pocoo.org/2013/5/21/porting-to-python-3-redux/>`.
+To write code for Python 3 that is portable to Python 2, you may also want to read Armin Ronacher's excellent
+`Python 3 porting guide <http://lucumr.pocoo.org/2013/5/21/porting-to-python-3-redux/>`.
 
 Writing ``from eight import *`` in your code is a no-op in Python 3. In Python 2, it binds a bunch of Python 3 names to
 their Python 2 equivalents. Also, if you need to import a module that was renamed in Python 3, writing ``from eight

@@ -7,6 +7,8 @@ import sys
 class Loader(object):
     def __init__(self):
         self._sys = sys
+        self.__package__ = __package__
+        self.__path__ = __path__
         self.USING_PYTHON2 = True if sys.version_info < (3, 0) else False
         if self.USING_PYTHON2:
             self._map = dict(str=unicode,
@@ -28,6 +30,12 @@ class Loader(object):
     def __getattr__(self, attr):
         if attr == '__all__':
             return list(self._map.keys())
+        elif attr == '__package__':
+            return self.__package__
+        elif attr == '__path__':
+            return self.__path__
+        elif attr == '__loader__':
+            return None
         elif attr in self._manifest:
             return self._map[attr]
         else:

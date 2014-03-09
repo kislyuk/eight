@@ -4,8 +4,9 @@ eight: Python 2 to the power of 3
 =================================
 Eight is a Python module that provides a minimalist compatibility layer between Python 3 and 2. Eight lets you write
 code for Python 3.3+ while providing limited compatibility with Python 2.7 with no code changes.  Eight is inspired by
-`six <https://pythonhosted.org/six/>`_, but is more lightweight, easier to use, and unambiguously biased toward Python 3
-code: if you remove eight from your code, it will continue to function exactly as it did with eight on Python 3.
+`six <https://pythonhosted.org/six/>`_ and `nine <https://github.com/nandoflorestan/nine>`_, but is more lightweight,
+easier to use, and unambiguously biased toward Python 3 code: if you remove eight from your code, it will continue to
+function exactly as it did with eight on Python 3.
 
 Installation
 ------------

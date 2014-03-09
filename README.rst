@@ -1,5 +1,3 @@
-Under development.
-
 eight: Python 2 to the power of 3
 =================================
 Eight is a Python module that provides a minimalist compatibility layer between Python 3 and 2. Eight lets you write

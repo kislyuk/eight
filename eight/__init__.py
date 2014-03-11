@@ -19,12 +19,18 @@ class Loader(object):
             self._moves = {'queue': 'Queue',
                            'reprlib': 'repr'}
         else:
-            self._map = dict()
+            self._map = dict(str=str,
+                             bytes=bytes,
+                             input=input,
+                             int=int)
             self._manifest = list(self._map.keys())
 
     def __getattr__(self, attr):
         if attr == '__all__':
-            return list(self._map.keys())
+            if self.USING_PYTHON2:
+                return list(self._map.keys())
+            else:
+                return []
         elif attr == '__package__':
             return self.__package__
         elif attr == '__path__':

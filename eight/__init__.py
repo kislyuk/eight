@@ -13,18 +13,13 @@ class Loader(object):
         if self.USING_PYTHON2:
             self._map = dict(str=unicode,
                              bytes=str,
-                             basestring=basestring,
                              input=raw_input,
                              int=long)
             self._manifest = list(self._map.keys())
             self._moves = {'queue': 'Queue',
                            'reprlib': 'repr'}
         else:
-            self._map = dict(str=str,
-                             bytes=bytes,
-                             basestring=(str, bytes),
-                             input=input,
-                             int=int)
+            self._map = dict()
             self._manifest = list(self._map.keys())
 
     def __getattr__(self, attr):

@@ -11,7 +11,7 @@ from eight import *
 
 class TestEight(unittest.TestCase):
     def test_basic_eight_statements(self):
-        #from eight import *
+        from eight import *
         from eight import queue
 
 if __name__ == '__main__':

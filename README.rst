@@ -37,6 +37,10 @@ If you use ``print``, division, non-ASCII literals, or relative imports, you sho
 
     from __future__ import (print_function, division, unicode_literals, absolute_import)
 
+TODO
+----
+stdio wrappers
+
 Links
 -----
 * `Project home page (GitHub) <https://github.com/kislyuk/eight>`_

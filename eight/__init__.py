@@ -21,7 +21,6 @@ class Loader(object):
                              filter=itertools.ifilter,
                              map=itertools.imap,
                              zip=itertools.izip)
-            self._manifest = list(self._map.keys())
             self._moves = {'queue': 'Queue',
                            'reprlib': 'repr'}
         else:
@@ -34,10 +33,10 @@ class Loader(object):
                              filter=filter,
                              map=map,
                              zip=zip)
-            self._manifest = list(self._map.keys())
         self._map.update(dict(USING_PYTHON2=self.USING_PYTHON2,
                               PY2=self.USING_PYTHON2,
                               PY3=not self.USING_PYTHON2))
+        self._manifest = list(self._map.keys())
         self._stdio_wrapped = False
 
     def __getattr__(self, attr):

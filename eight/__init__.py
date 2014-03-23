@@ -5,6 +5,16 @@ import sys, itertools
 # Reminder: Don't put any globals here. They will become unusable once we perform the loader trick below.
 
 class Loader(object):
+    _map = dict(str=str,
+                bytes=bytes,
+                input=input,
+                int=int,
+                chr=chr,
+                range=range,
+                filter=filter,
+                map=map,
+                zip=zip)
+
     def __init__(self):
         self._sys = sys
         self.__package__ = __package__
@@ -23,16 +33,6 @@ class Loader(object):
                              zip=itertools.izip)
             self._moves = {'queue': 'Queue',
                            'reprlib': 'repr'}
-        else:
-            self._map = dict(str=str,
-                             bytes=bytes,
-                             input=input,
-                             int=int,
-                             chr=chr,
-                             range=range,
-                             filter=filter,
-                             map=map,
-                             zip=zip)
         self._map.update(dict(USING_PYTHON2=self.USING_PYTHON2,
                               PY2=self.USING_PYTHON2,
                               PY3=not self.USING_PYTHON2))

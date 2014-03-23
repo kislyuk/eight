@@ -8,10 +8,11 @@ import os, sys, unittest, collections, copy, re
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from eight import *
 
-
 class TestEight(unittest.TestCase):
     def test_basic_eight_statements(self):
         from eight import queue
+
+        self.assertEqual(type(map(str, range(5))), map)
 
     def test_long_int(self):
         pass

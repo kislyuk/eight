@@ -37,9 +37,20 @@ If you use ``print``, division, non-ASCII literals, or relative imports, you sho
 
     from __future__ import (print_function, division, unicode_literals, absolute_import)
 
-TODO
-----
-stdio wrappers
+Wrapping stdio
+--------------
+Eight provides wrappers for ``sys.stdin``, ``sys.stdout``, and ``sys.stderr`` to make them (and methods that use them)
+behave like they do on Python 3. Specifically, in Python 3 these streams accept text data, and their ``.buffer`` attributes
+refer to the underlying streams that accept bytes. Eight uses the `io <http://docs.python.org/2/library/io.html>`_ module
+to do the same for you, but subclasses the TextIOWrapper class for ``sys.stdout`` and ``sys.stderr`` to coerce non-unicode
+input to unicode on Python 2 (otherwise, because of the Python 2 semantics, things like exception printing cease to work).
+
+To enable stdio wrapping, use the following:
+
+.. code-block:: python
+
+    import eight
+    eight.wrap_stdio()
 
 Links
 -----

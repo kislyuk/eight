@@ -12,8 +12,8 @@ install:
 
 script:
     - make test
-    - coverage run --omit='*/site-packages/*,*/distutils/*' ./test/test.py
-    - coverage report --show-missing
+    - source env/activate && coverage run --omit='*/site-packages/*,*/distutils/*' ./test/test.py
+    - source env/activate && coverage report --show-missing
 
 after_success:
     - pip install --quiet coveralls

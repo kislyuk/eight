@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-import sys, itertools
+import sys, itertools, io
 
 # Reminder: Don't put any globals here. They will become unusable once we perform the loader trick below.
 
@@ -13,7 +13,8 @@ class Loader(object):
                 range=range,
                 filter=filter,
                 map=map,
-                zip=zip)
+                zip=zip,
+                open=open)
 
     def __init__(self):
         self._sys = sys
@@ -21,7 +22,6 @@ class Loader(object):
         self.__path__ = __path__
         self.USING_PYTHON2 = True if sys.version_info < (3, 0) else False
         if self.USING_PYTHON2:
-            from itertools import ifilter as filter, imap as map, izip as zip
             self._map = dict(str=unicode,
                              bytes=str,
                              input=raw_input,
@@ -30,7 +30,8 @@ class Loader(object):
                              range=xrange,
                              filter=itertools.ifilter,
                              map=itertools.imap,
-                             zip=itertools.izip)
+                             zip=itertools.izip,
+                             open=io.open)
             self._moves = {'queue': 'Queue',
                            'reprlib': 'repr'}
         self._map.update(dict(USING_PYTHON2=self.USING_PYTHON2,

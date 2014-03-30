@@ -52,6 +52,10 @@ To enable stdio wrapping, use the following:
     import eight
     eight.wrap_stdio()
 
+To revert the effects of this on any of the streams, use the detach method, e.g. ``sys.stdin = sys.stdin.detach()`` (but
+remember to condition this on ``eight.USING_PYTHON2``). See the `io module documentation
+<http://docs.python.org/2/library/io.html>`_ for more information.
+
 Links
 -----
 * `Project home page (GitHub) <https://github.com/kislyuk/eight>`_

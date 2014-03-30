@@ -56,11 +56,16 @@ To revert the effects of this on any of the streams, use the detach method, e.g.
 remember to condition this on ``eight.USING_PYTHON2``). See the `io module documentation
 <http://docs.python.org/2/library/io.html>`_ for more information.
 
+Acknowledgments
+---------------
+`Python-future <https://github.com/PythonCharmers/python-future>`_ for doing a bunch of heavy lifting on backports of
+Python 3 features.
+
 Links
 -----
 * `Project home page (GitHub) <https://github.com/kislyuk/eight>`_
 * `Documentation (Read the Docs) <https://eight.readthedocs.org/en/latest/>`_
-* `Package distribution (New PyPI) <https://preview-pypi.python.org/project/eight/>`_ `(Old PyPI) <http://pypi.python.org/pypi/eight>`_
+* `Package distribution (PyPI) <https://pypi.python.org/pypi/eight/>`_
 
 Bugs
 ~~~~

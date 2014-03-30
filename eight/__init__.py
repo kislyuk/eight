@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-import sys, itertools, io
+import sys
 
 # Reminder: Don't put any globals here. They will become unusable once we perform the loader trick below.
 
@@ -12,9 +12,12 @@ class Loader(object):
                 chr=chr,
                 range=range,
                 filter=filter,
+                hex=hex,
                 map=map,
+                oct=oct,
                 zip=zip,
-                open=open)
+                open=open,
+                super=super)
 
     def __init__(self):
         self._sys = sys
@@ -22,18 +25,25 @@ class Loader(object):
         self.__path__ = __path__
         self.USING_PYTHON2 = True if sys.version_info < (3, 0) else False
         if self.USING_PYTHON2:
+            import io, future_builtins
             self._map = dict(str=unicode,
                              bytes=str,
                              input=raw_input,
                              int=long,
                              chr=unichr,
                              range=xrange,
-                             filter=itertools.ifilter,
-                             map=itertools.imap,
-                             zip=itertools.izip,
+                             ascii=future_builtins.ascii,
+                             filter=future_builtins.filter,
+                             hex=future_builtins.hex,
+                             map=future_builtins.map,
+                             oct=future_builtins.oct,
+                             zip=future_builtins.zip,
                              open=io.open)
             self._moves = {'queue': 'Queue',
                            'reprlib': 'repr'}
+        else:
+            self._map['ascii'] = ascii
+
         self._map.update(dict(USING_PYTHON2=self.USING_PYTHON2,
                               PY2=self.USING_PYTHON2,
                               PY3=not self.USING_PYTHON2))

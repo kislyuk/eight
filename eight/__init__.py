@@ -17,6 +17,7 @@ class Loader(object):
                 oct=oct,
                 zip=zip,
                 open=open,
+                round=round,
                 super=super)
 
     def __init__(self):
@@ -26,6 +27,8 @@ class Loader(object):
         self.USING_PYTHON2 = True if sys.version_info < (3, 0) else False
         if self.USING_PYTHON2:
             import io, future_builtins
+            from future.builtins.newround import newround
+            from future.builtins.newsuper import newsuper
             self._map = dict(str=unicode,
                              bytes=str,
                              input=raw_input,
@@ -38,9 +41,10 @@ class Loader(object):
                              map=future_builtins.map,
                              oct=future_builtins.oct,
                              zip=future_builtins.zip,
-                             open=io.open)
-            self._moves = {'queue': 'Queue',
-                           'reprlib': 'repr'}
+                             open=io.open,
+                             round=newround,
+                             super=newsuper)
+            self._renames = None
         else:
             self._map['ascii'] = ascii
 
@@ -66,7 +70,10 @@ class Loader(object):
             return self._map[attr]
         else:
             if self.USING_PYTHON2:
-                attr = self._moves[attr]
+                from future import standard_library
+                if self._renames is None:
+                    self._renames = {v: k for k, v in standard_library.RENAMES.items()}
+                attr = self._renames[attr]
             __import__(attr)
             return self._sys.modules[attr]
 

@@ -14,7 +14,7 @@ porting guide <http://lucumr.pocoo.org/2013/5/21/porting-to-python-3-redux/>`_, 
 Writing ``from eight import *`` in your code is a no-op in Python 3. In Python 2, it binds a bunch of Python 3 names to
 their Python 2 equivalents. Also, if you need to import a module that was renamed in Python 3, writing ``from eight
 import <module>`` will do the right thing (equivalent to ``import <module>`` on Python 3 and ``import <old_name> as
-<module>`` on Python 2).
+<module>`` on Python 2). Finally, eight can optionally wrap your standard streams to use text, not bytes (see below).
 
 Installation
 ------------

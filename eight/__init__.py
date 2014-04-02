@@ -29,9 +29,10 @@ class Loader(object):
             import io, future_builtins
             from future.builtins.newround import newround
             from future.builtins.newsuper import newsuper
+            from .utils import input_with_unbuffered_stdout
             self._map = dict(str=unicode,
                              bytes=str,
-                             input=raw_input,
+                             input=input_with_unbuffered_stdout,
                              int=long,
                              chr=unichr,
                              range=xrange,

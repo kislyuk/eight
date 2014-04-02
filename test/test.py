@@ -12,6 +12,7 @@ from eight import *
 class TestEight(unittest.TestCase):
     def test_basic_eight_statements(self):
         from eight import queue, builtins, reprlib
+        from eight.collections import UserDict
         self.assertEqual(type(map(str, range(5))), map)
         self.assertEqual(open, io.open)
 

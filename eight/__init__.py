@@ -29,7 +29,8 @@ class Loader(object):
             import io, future_builtins
             from future.builtins.newround import newround
             from future.builtins.newsuper import newsuper
-            from .utils import input_with_unbuffered_stdout
+            from .utils import input_with_unbuffered_stdout, RedirectingLoader
+            self._redirecting_loader = RedirectingLoader
             self._map = dict(str=unicode,
                              bytes=str,
                              input=input_with_unbuffered_stdout,
@@ -46,6 +47,7 @@ class Loader(object):
                              round=newround,
                              super=newsuper)
             self._renames = None
+            self._loaders = None
         else:
             self._map['ascii'] = ascii
 
@@ -72,8 +74,15 @@ class Loader(object):
         else:
             if self.USING_PYTHON2:
                 from future import standard_library
+                from collections import defaultdict
                 if self._renames is None:
                     self._renames = {v: k for k, v in standard_library.RENAMES.items()}
+
+                    self._loaders = defaultdict(self._redirecting_loader)
+
+                    for new_module, new_name, old_module, old_name in standard_library.MOVES:
+                        self._loaders[new_module].add(new_module, new_name, old_module, old_name)
+
                 attr = self._renames[attr]
             __import__(attr)
             return self._sys.modules[attr]

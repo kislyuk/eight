@@ -61,7 +61,7 @@ remember to condition this on ``eight.USING_PYTHON2``). See the `io module docum
 Selecting from the buffet
 -------------------------
 You can see what ``from eight import *`` will do by running `IPython <https://github.com/ipython/ipython>`_ and typing
-``import eight; eight.<TAB>``. Here is a full list of what's available:
+``import eight``, then ``eight.<TAB>``. Here is a full list of what's available:
 
 * ``ascii``
 * ``bytes``

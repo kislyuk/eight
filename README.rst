@@ -29,6 +29,7 @@ Synopsis
 
     from eight import *
     from eight import queue
+    from eight.collections import UserList, deque
 
 If you use ``print``, division, non-ASCII literals, or relative imports, you should also add this `future import
 <http://docs.python.org/3/library/__future__.html>`_ at the top of each source file:

@@ -8,7 +8,7 @@ install_requires = []
 
 setup(
     name='eight',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/kislyuk/eight',
     license='Apache Software License',
     author='Andrey Kislyuk',

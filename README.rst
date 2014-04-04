@@ -58,6 +58,28 @@ To revert the effects of this on any of the streams, use the detach method, e.g.
 remember to condition this on ``eight.USING_PYTHON2``). See the `io module documentation
 <http://docs.python.org/2/library/io.html>`_ for more information.
 
+Selecting from the buffet
+-------------------------
+You can see what `from eight import *` will do by running [IPython](https://github.com/ipython/ipython) and typing
+`import eight; eight.<TAB>`. Here is a full list of what's available:
+
+* `ascii`
+* `bytes`
+* `chr`
+* `filter`
+* `hex`
+* `input`
+* `int`
+* `map`
+* `oct`
+* `open`
+* `range`
+* `round`
+* `str`
+* `super`
+* `zip`
+
+
 Acknowledgments
 ---------------
 `Python-future <https://github.com/PythonCharmers/python-future>`_ for doing a bunch of heavy lifting on backports of

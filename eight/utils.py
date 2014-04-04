@@ -25,7 +25,7 @@ def input_with_unbuffered_stdout(prompt=None):
         sys.stdout = orig_stdout
     return result
 
-Move = namedtuple('Move', ('old_module', 'old_name'))
+Move = namedtuple('Move', ('new_name', 'old_module', 'old_name'))
 
 class RedirectingLoader(object):
     def __init__(self, name):
@@ -34,8 +34,8 @@ class RedirectingLoader(object):
         self._old_module = None
         self._module = None
 
-    def _add_redirect(self, new_name, old_module, old_name):
-        self._moves[new_name] = Move(old_module, old_name)
+    def _add_redirect(self, move):
+        self._moves[move.new_name] = move
 
     def __getattr__(self, attr):
         if USING_PYTHON2 and attr in self._moves:

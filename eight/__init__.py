@@ -98,19 +98,19 @@ class Loader(object):
             sys.stderr = StderrTextIOWrapper(io.FileIO(sys.stderr.fileno(), mode='w'), encoding=sys.stderr.encoding)
             self._stdio_wrapped = True
 
-from .utils import RedirectingLoader
-MOVES = {'collections': [('UserList', 'UserList', 'UserList'),
-                         ('UserDict', 'UserDict', 'UserDict'),
-                         ('UserString','UserString', 'UserString')],
-         'itertools': [('filterfalse','itertools', 'ifilterfalse'),
-                       ('zip_longest','itertools', 'izip_longest')],
-         'sys': [('intern', '__builtin__', 'intern')]}
+from .utils import RedirectingLoader, Move
+MOVES = {'collections': [Move(new_name='UserList', old_module='UserList', old_name='UserList'),
+                         Move(new_name='UserDict', old_module='UserDict', old_name='UserDict'),
+                         Move(new_name='UserString', old_module='UserString', old_name='UserString')],
+         'itertools': [Move(new_name='filterfalse', old_module='itertools', old_name='ifilterfalse'),
+                       Move(new_name='zip_longest', old_module='itertools', old_name='izip_longest')],
+         'sys': [Move(new_name='intern', old_module='__builtin__', old_name='intern')]}
 
 for new_module, moves in MOVES.items():
     name = __name__ + '.' + new_module
     sys.modules[name] = RedirectingLoader(new_module)
-    for new_name, old_module, old_name in moves:
-        sys.modules[name]._add_redirect(new_name, old_module, old_name)
+    for move in moves:
+        sys.modules[name]._add_redirect(move)
 
 loader = Loader()
 sys.modules[__name__] = loader

@@ -60,24 +60,24 @@ remember to condition this on ``eight.USING_PYTHON2``). See the `io module docum
 
 Selecting from the buffet
 -------------------------
-You can see what `from eight import *` will do by running [IPython](https://github.com/ipython/ipython) and typing
-`import eight; eight.<TAB>`. Here is a full list of what's available:
+You can see what ``from eight import *`` will do by running [IPython](https://github.com/ipython/ipython) and typing
+``import eight; eight.<TAB>``. Here is a full list of what's available:
 
-* `ascii`
-* `bytes`
-* `chr`
-* `filter`
-* `hex`
-* `input`
-* `int`
-* `map`
-* `oct`
-* `open`
-* `range`
-* `round`
-* `str`
-* `super`
-* `zip`
+* ``ascii``
+* ``bytes``
+* ``chr``
+* ``filter``
+* ``hex``
+* ``input``
+* ``int``
+* ``map``
+* ``oct``
+* ``open``
+* ``range``
+* ``round``
+* ``str``
+* ``super``
+* ``zip``
 
 
 Acknowledgments

@@ -71,12 +71,16 @@ class Loader(object):
             return self._map[attr]
         else:
             if self.USING_PYTHON2:
-                from future import standard_library
                 if self._renames is None:
+                    from future import standard_library
                     self._renames = {v: k for k, v in standard_library.RENAMES.items()}
-                attr = self._renames[attr]
+                if attr in self._renames:
+                    attr = self._renames[attr]
             __import__(attr)
             return self._sys.modules[attr]
+
+    def __dir__(self):
+        return list(self._map.keys())
 
     def wrap_stdio(self):
         if self.USING_PYTHON2 and not self._stdio_wrapped:
@@ -93,6 +97,20 @@ class Loader(object):
             sys.stdout = StderrTextIOWrapper(io.FileIO(sys.stdout.fileno(), mode='w'), encoding=sys.stdout.encoding)
             sys.stderr = StderrTextIOWrapper(io.FileIO(sys.stderr.fileno(), mode='w'), encoding=sys.stderr.encoding)
             self._stdio_wrapped = True
+
+from .utils import RedirectingLoader
+MOVES = {'collections': [('UserList', 'UserList', 'UserList'),
+                         ('UserDict', 'UserDict', 'UserDict'),
+                         ('UserString','UserString', 'UserString')],
+         'itertools': [('filterfalse','itertools', 'ifilterfalse'),
+                       ('zip_longest','itertools', 'izip_longest')],
+         'sys': [('intern', '__builtin__', 'intern')]}
+
+for new_module, moves in MOVES.items():
+    name = __name__ + '.' + new_module
+    sys.modules[name] = RedirectingLoader(new_module)
+    for new_name, old_module, old_name in moves:
+        sys.modules[name]._add_redirect(new_name, old_module, old_name)
 
 loader = Loader()
 sys.modules[__name__] = loader

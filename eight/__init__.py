@@ -52,13 +52,13 @@ class Loader(object):
         self._map.update(dict(USING_PYTHON2=self.USING_PYTHON2,
                               PY2=self.USING_PYTHON2,
                               PY3=not self.USING_PYTHON2))
-        self._manifest = list(self._map.keys())
+        self._manifest = list(self._map)
         self._stdio_wrapped = False
 
     def __getattr__(self, attr):
         if attr == '__all__':
             if self.USING_PYTHON2:
-                return list(self._map.keys())
+                return list(self._map)
             else:
                 return []
         elif attr == '__package__':
@@ -80,7 +80,7 @@ class Loader(object):
             return self._sys.modules[attr]
 
     def __dir__(self):
-        return list(self._map.keys())
+        return list(self._map)
 
     def wrap_stdio(self):
         if self.USING_PYTHON2 and not self._stdio_wrapped:

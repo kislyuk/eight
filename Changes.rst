@@ -1,3 +1,7 @@
+Version 0.1.2 (2014-04-04)
+--------------------------
+- Fix installation of dependencies.
+
 Version 0.1.1 (2014-04-03)
 --------------------------
 - Add redirecting module loader to allow statements like "from eight.collections import UserDict".

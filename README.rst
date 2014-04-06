@@ -79,6 +79,12 @@ You can see what ``from eight import *`` will do by running `IPython <https://gi
 * ``super``
 * ``zip``
 
+You can import these symbols by listing them explicitly. If for any reason you see an issue with importing them all (which
+is recommended), you can of course import a subset.
+
+In addition to names imported by ``from eight import *``, the following modules are available and must be imported by name:
+
+TODO
 
 Acknowledgments
 ---------------

@@ -45,7 +45,6 @@ class Loader(object):
                              open=io.open,
                              round=newround,
                              super=newsuper)
-            self._renames = None
         else:
             self._map['ascii'] = ascii
 
@@ -70,12 +69,12 @@ class Loader(object):
         elif attr in self._manifest:
             return self._map[attr]
         else:
-            if self.USING_PYTHON2:
-                if self._renames is None:
-                    from future import standard_library
-                    self._renames = {v: k for k, v in standard_library.RENAMES.items()}
-                if attr in self._renames:
-                    attr = self._renames[attr]
+#            if self.USING_PYTHON2:
+#                if self._renames is None:
+#                    from future import standard_library
+#                    self._renames = {v: k for k, v in standard_library.RENAMES.items()}
+#                if attr in self._renames:
+#                    attr = self._renames[attr]
             __import__(attr)
             return self._sys.modules[attr]
 
@@ -99,18 +98,31 @@ class Loader(object):
             self._stdio_wrapped = True
 
 from .utils import RedirectingLoader, Move
+
 MOVES = {'collections': [Move(new_name='UserList', old_module='UserList', old_name='UserList'),
                          Move(new_name='UserDict', old_module='UserDict', old_name='UserDict'),
-                         Move(new_name='UserString', old_module='UserString', old_name='UserString')],
+                        Move(new_name='UserString', old_module='UserString', old_name='UserString')],
          'itertools': [Move(new_name='filterfalse', old_module='itertools', old_name='ifilterfalse'),
                        Move(new_name='zip_longest', old_module='itertools', old_name='izip_longest')],
          'sys': [Move(new_name='intern', old_module='__builtin__', old_name='intern')]}
+
+RENAMES = {'__builtin__': 'builtins',
+           'copy_reg': 'copyreg',
+           'Queue': 'queue',
+           'ConfigParser': 'configparser',
+           'repr': 'reprlib',
+           '_winreg': 'winreg',
+           'thread': '_thread',
+           'dummy_thread': '_dummy_thread'}
 
 for new_module, moves in MOVES.items():
     name = __name__ + '.' + new_module
     sys.modules[name] = RedirectingLoader(new_module)
     for move in moves:
         sys.modules[name]._add_redirect(move)
+
+for old_name, new_name in RENAMES.items():
+    sys.modules[new_name] = RedirectingLoader(old_name)
 
 loader = Loader()
 sys.modules[__name__] = loader

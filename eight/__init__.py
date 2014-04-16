@@ -93,8 +93,10 @@ class Loader(object):
                         TextIOWrapper.write(self, unicode(s, self.encoding))
 
             sys.stdin = io.open(sys.stdin.fileno(), encoding=sys.stdin.encoding)
-            sys.stdout = StderrTextIOWrapper(io.FileIO(sys.stdout.fileno(), mode='w'), encoding=sys.stdout.encoding)
-            sys.stderr = StderrTextIOWrapper(io.FileIO(sys.stderr.fileno(), mode='w'), encoding=sys.stderr.encoding)
+            sys.stdout = StderrTextIOWrapper(io.FileIO(sys.stdout.fileno(), mode='w'), encoding=sys.stdout.encoding,
+                                             line_buffering=True if sys.stdout.isatty() else False)
+            sys.stderr = StderrTextIOWrapper(io.FileIO(sys.stderr.fileno(), mode='w'), encoding=sys.stderr.encoding,
+                                             line_buffering=True if sys.stderr.isatty() else False)
             self._stdio_wrapped = True
 
 from .utils import RedirectingLoader, Move

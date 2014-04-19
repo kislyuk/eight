@@ -5,6 +5,18 @@ from collections import namedtuple
 
 USING_PYTHON2 = True if sys.version_info < (3, 0) else False
 
+def python2_input(prompt=None):
+    try:
+        cur_stdin, cur_stdout = sys.stdin, sys.stdout
+        if hasattr(sys.stdin, '_original_stream'):
+            sys.stdin = sys.stdin._original_stream
+        if hasattr(sys.stdout, '_original_stream'):
+            sys.stdout = sys.stdout._original_stream
+        encoded_prompt = prompt.encode(getattr(sys.stdout, 'encoding', 'utf-8'))
+        return raw_input(encoded_prompt).decode(getattr(sys.stdin, 'encoding', 'utf-8'))
+    finally:
+        sys.stdin, sys.stdout = cur_stdin, cur_stdout
+
 def input_with_unbuffered_stdout(prompt=None):
     class Unbuffered(object):
         def __init__(self, stream):

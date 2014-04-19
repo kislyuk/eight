@@ -29,10 +29,10 @@ class Loader(object):
             import io, future_builtins
             from future.builtins.newround import newround
             from future.builtins.newsuper import newsuper
-            from .utils import input_with_unbuffered_stdout
+            from .utils import python2_input
             self._map = dict(str=unicode,
                              bytes=str,
-                             input=input_with_unbuffered_stdout,
+                             input=python2_input,
                              int=long,
                              chr=unichr,
                              range=xrange,
@@ -92,9 +92,13 @@ class Loader(object):
                     else:
                         TextIOWrapper.write(self, unicode(s, self.encoding))
 
+            original_stdin, original_stdout, original_stderr = sys.stdin, sys.stdout, sys.stderr
             sys.stdin = io.open(sys.stdin.fileno(), encoding=sys.stdin.encoding)
+            sys.stdin._original_stream = original_stdin
             sys.stdout = StderrTextIOWrapper(io.FileIO(sys.stdout.fileno(), mode='w'), encoding=sys.stdout.encoding)
+            sys.stdout._original_stream = original_stdout
             sys.stderr = StderrTextIOWrapper(io.FileIO(sys.stderr.fileno(), mode='w'), encoding=sys.stderr.encoding)
+            sys.stderr._original_stream = original_stderr
             self._stdio_wrapped = True
 
 from .utils import RedirectingLoader, Move

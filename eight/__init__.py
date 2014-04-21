@@ -21,6 +21,7 @@ class Loader(object):
                 super=super)
 
     def __init__(self):
+        self._name = __name__
         self._sys = sys
         self.__package__ = __package__
         self.__path__ = __path__
@@ -69,14 +70,7 @@ class Loader(object):
         elif attr in self._manifest:
             return self._map[attr]
         else:
-#            if self.USING_PYTHON2:
-#                if self._renames is None:
-#                    from future import standard_library
-#                    self._renames = {v: k for k, v in standard_library.RENAMES.items()}
-#                if attr in self._renames:
-#                    attr = self._renames[attr]
-            __import__(attr)
-            return self._sys.modules[attr]
+            return self._sys.modules[self._name + '.' + attr]
 
     def __dir__(self):
         return list(self._map)
@@ -105,6 +99,8 @@ class Loader(object):
 
 from .utils import RedirectingLoader, Move
 
+USING_PYTHON2 = True if sys.version_info < (3, 0) else False
+
 MOVES = {'collections': [Move(new_name='UserList', old_module='UserList', old_name='UserList'),
                          Move(new_name='UserDict', old_module='UserDict', old_name='UserDict'),
                         Move(new_name='UserString', old_module='UserString', old_name='UserString')],
@@ -128,7 +124,8 @@ for new_module, moves in MOVES.items():
         sys.modules[name]._add_redirect(move)
 
 for old_name, new_name in RENAMES.items():
-    sys.modules[new_name] = RedirectingLoader(old_name)
+    sys.modules[__name__ + '.' + new_name] = RedirectingLoader(old_name if USING_PYTHON2 else new_name,
+                                                               parent_name=__name__)
 
 loader = Loader()
 sys.modules[__name__] = loader

@@ -15,6 +15,7 @@ class TestEight(unittest.TestCase):
         from eight.configparser import ConfigParser
         from eight import collections
         from eight.collections import UserList, deque
+        q = collections.UserList()
         self.assertEqual(type(map(str, range(5))), map)
         self.assertEqual(open, io.open)
 

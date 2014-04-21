@@ -17,31 +17,12 @@ def python2_input(prompt=None):
     finally:
         sys.stdin, sys.stdout = cur_stdin, cur_stdout
 
-def input_with_unbuffered_stdout(prompt=None):
-    class Unbuffered(object):
-        def __init__(self, stream):
-            self.stream = stream
-
-        def write(self, data):
-            self.stream.write(data)
-            self.stream.flush()
-
-        def __getattr__(self, attr):
-            return getattr(self.stream, attr)
-
-    orig_stdout = sys.stdout
-    try:
-        sys.stdout = Unbuffered(sys.stdout)
-        result = raw_input(prompt)
-    finally:
-        sys.stdout = orig_stdout
-    return result
-
 Move = namedtuple('Move', ('new_name', 'old_module', 'old_name'))
 
 class RedirectingLoader(object):
-    def __init__(self, name):
+    def __init__(self, name, parent_name='eight'):
         self._name = name
+        self._parent_name = parent_name
         self._moves = {}
         self._old_module = None
         self._module = None
@@ -58,4 +39,6 @@ class RedirectingLoader(object):
         else:
             if self._module is None:
                 self._module = __import__(self._name)
+            if len(self._moves) == 0:
+                sys.modules[self._parent_name + '.' + self._name] = sys.modules[self._name]
             return getattr(self._module, attr)

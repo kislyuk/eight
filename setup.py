@@ -7,7 +7,7 @@ install_requires = [line.rstrip() for line in open(os.path.join(os.path.dirname(
 
 setup(
     name='eight',
-    version='0.1.3',
+    version='0.2.0',
     url='https://github.com/kislyuk/eight',
     license='Apache Software License',
     author='Andrey Kislyuk',

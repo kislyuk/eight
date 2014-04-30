@@ -82,9 +82,17 @@ You can see what ``from eight import *`` will do by running `IPython <https://gi
 You can import these symbols by listing them explicitly. If for any reason you see an issue with importing them all (which
 is recommended), you can of course import a subset.
 
-In addition to names imported by ``from eight import *``, the following modules are available and must be imported by name:
+In addition to names imported by ``from eight import *``, the following modules are available and should be imported by
+name using ``from eight import <name>`` when needed:
 
-TODO
+* ``queue`` (old name: ``Queue``)
+* ``builtins`` (old name: ``__builtin__``)
+* ``copyreg`` (old name: ``copy_reg``)
+* ``configparser`` (old name: ``ConfigParser``)
+* ``reprlib`` (old name: ``repr``)
+* ``winreg`` (old name: ``_winreg``)
+* ``_thread`` (old name: ``thread``)
+* ``_dummy_thread`` (old name: ``dummy_thread``)
 
 Acknowledgments
 ---------------

@@ -94,6 +94,8 @@ name using ``from eight import <name>`` when needed:
 * ``_thread`` (old name: ``thread``)
 * ``_dummy_thread`` (old name: ``dummy_thread``)
 
+The following modules have attributes which resided elsewhere in Python 2: TODO
+
 Acknowledgments
 ---------------
 `Python-future <https://github.com/PythonCharmers/python-future>`_ for doing a bunch of heavy lifting on backports of

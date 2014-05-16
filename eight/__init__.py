@@ -25,6 +25,7 @@ class Loader(object):
         self._sys = sys
         self.__package__ = __package__
         self.__path__ = __path__
+        self.__file__ = __file__
         self.USING_PYTHON2 = True if sys.version_info < (3, 0) else False
         if self.USING_PYTHON2:
             import io, future_builtins
@@ -65,6 +66,8 @@ class Loader(object):
             return self.__package__
         elif attr == '__path__':
             return self.__path__
+        elif attr == '__file__':
+            return self.__file__
         elif attr == '__loader__':
             return None
         elif attr in self._manifest:
@@ -96,6 +99,18 @@ class Loader(object):
                                              line_buffering=True if sys.stderr.isatty() else False)
             sys.stderr._original_stream = original_stderr
             self._stdio_wrapped = True
+
+    def decode_command_line_args(self):
+        if self.USING_PYTHON2:
+            import sys
+            sys.argv = [i if isinstance(i, unicode) else i.decode(sys.stdin.encoding) for i in sys.argv]
+        return sys.argv
+
+    def encode_command_line_args(self):
+        if self.USING_PYTHON2:
+            import sys
+            sys.argv = [i if isinstance(i, str) else i.encode(sys.stdin.encoding) for i in sys.argv]
+        return sys.argv
 
 from .utils import RedirectingLoader, Move
 

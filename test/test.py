@@ -25,6 +25,8 @@ class TestEight(unittest.TestCase):
     def test_stdio_wrappers(self):
         eight.wrap_stdio()
         self.assertTrue(hasattr(sys.stdin, 'buffer'))
+        sys.stdout.write(u'test')
+        sys.stderr.write(u'test')
         sys.stdout.buffer.write(b'test')
         sys.stderr.buffer.write(b'test')
         if eight.USING_PYTHON2:

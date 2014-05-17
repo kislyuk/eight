@@ -58,6 +58,18 @@ To revert the effects of this on any of the streams, use the detach method, e.g.
 remember to condition this on ``eight.USING_PYTHON2``). See the `io module documentation
 <http://docs.python.org/2/library/io.html>`_ for more information.
 
+Decoding command-line arguments
+-------------------------------
+Eight provides a utility function to decode the contents of ``sys.argv`` on Python 2 (as Python 3 does). It uses
+``sys.stdin.encoding`` as the encoding to do so:
+
+.. code-block:: python
+
+    import eight
+    eight.decode_command_line_args()
+
+The call to ``decode_command_line_args()`` replaces ``sys.argv`` with its decoded contents and returns the new contents.
+
 Selecting from the buffet
 -------------------------
 You can see what ``from eight import *`` will do by running `IPython <https://github.com/ipython/ipython>`_ and typing

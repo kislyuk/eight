@@ -41,5 +41,8 @@ class TestEight(unittest.TestCase):
             s = bytes("конструкция", encoding="utf-8")
         self.assertEqual(str(s, encoding="utf-8"), u"конструкция")
 
+    def test_decode_command_line_args(self):
+        pass
+
 if __name__ == '__main__':
     unittest.main()

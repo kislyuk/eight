@@ -73,7 +73,7 @@ The call to ``decode_command_line_args()`` replaces ``sys.argv`` with its decode
 Wrapping environment variable getters and setters
 -------------------------------------------------
 Eight provides utility wrappers to help bring Python 2 environment variable access and assignment in line with Python
-3. encode the input to ``os.putenv`` (which is used for statements like ``os.environ[x] = y``) and decode the output of
+3: encode the input to ``os.putenv`` (which is used for statements like ``os.environ[x] = y``) and decode the output of
 ``os.getenv`` (used for ``x = os.environ[y]``). Use ``wrap_os_environ_io()`` to monkey-patch these wrappers into the
 ``os`` module:
 

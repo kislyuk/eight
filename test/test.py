@@ -46,5 +46,8 @@ class TestEight(unittest.TestCase):
         os.environ["переменная"] = "значение"
         self.assertEqual(os.environ["переменная"], "значение")
 
+    def test_decode_command_line_args(self):
+        pass
+
 if __name__ == '__main__':
     unittest.main()

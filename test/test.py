@@ -41,5 +41,10 @@ class TestEight(unittest.TestCase):
             s = bytes("конструкция", encoding="utf-8")
         self.assertEqual(str(s, encoding="utf-8"), u"конструкция")
 
+    def test_os_environ_io_wrappers(self):
+        eight.wrap_os_environ_io()
+        os.environ["переменная"] = "значение"
+        self.assertEqual(os.environ["переменная"], "значение")
+
 if __name__ == '__main__':
     unittest.main()

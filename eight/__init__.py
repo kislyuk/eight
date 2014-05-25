@@ -112,6 +112,26 @@ class Loader(object):
             sys.argv = [i if isinstance(i, str) else i.encode(sys.stdin.encoding) for i in sys.argv]
         return sys.argv
 
+    def wrap_os_environ_io(self):
+        if self.USING_PYTHON2:
+            import os, sys
+            native_getenv, native_putenv = os.getenv, os.putenv
+
+            def getenv(varname, value=None):
+                v = native_getenv(varname, value)
+                if isinstance(v, bytes):
+                    v = v.decode(sys.stdin.encoding)
+                return v
+
+            def putenv(varname, value):
+                if not isinstance(varname, bytes):
+                    varname = varname.encode(sys.stdout.encoding)
+                if not isinstance(value, bytes):
+                    value = value.encode(sys.stdout.encoding)
+                native_putenv(varname, value)
+
+            os.getenv, os.putenv = getenv, putenv
+
 from .utils import RedirectingLoader, Move
 
 USING_PYTHON2 = True if sys.version_info < (3, 0) else False

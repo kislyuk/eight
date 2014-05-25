@@ -1,3 +1,7 @@
+Version 0.3.0 (2014-04-21)
+--------------------------
+- Add new utility functions to wrap input and output of command-line arguments and environment variables on Python 2.
+
 Version 0.2.0 (2014-04-21)
 --------------------------
 - Support more renamed packages.

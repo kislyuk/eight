@@ -45,6 +45,8 @@ class TestEight(unittest.TestCase):
         eight.wrap_os_environ_io()
         os.environ["переменная"] = "значение"
         self.assertEqual(os.environ["переменная"], "значение")
+        self.assertEqual(os.environ.copy()["переменная"], "значение")
+        self.assertTrue("переменная" in os.environ)
 
     def test_decode_command_line_args(self):
         pass

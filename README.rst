@@ -129,7 +129,7 @@ Links
 -----
 * `Project home page (GitHub) <https://github.com/kislyuk/eight>`_
 * `Documentation (Read the Docs) <https://eight.readthedocs.org/en/latest/>`_
-* `Package distribution (PyPI) <https://pypi.python.org/pypi/eight/>`_
+* `Package distribution (PyPI) <https://warehouse.python.org/project/eight/>`_
 
 Bugs
 ~~~~
@@ -144,6 +144,6 @@ Licensed under the terms of the `Apache License, Version 2.0 <http://www.apache.
 .. image:: https://coveralls.io/repos/kislyuk/eight/badge.png?branch=master
         :target: https://coveralls.io/r/kislyuk/eight?branch=master
 .. image:: https://pypip.in/v/eight/badge.png
-        :target: https://crate.io/packages/eight
+        :target: https://warehouse.python.org/project/eight/
 .. image:: https://pypip.in/d/eight/badge.png
-        :target: https://crate.io/packages/eight
+        :target: https://warehouse.python.org/project/eight/

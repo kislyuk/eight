@@ -147,3 +147,5 @@ Licensed under the terms of the `Apache License, Version 2.0 <http://www.apache.
         :target: https://warehouse.python.org/project/eight/
 .. image:: https://pypip.in/d/eight/badge.png
         :target: https://warehouse.python.org/project/eight/
+.. image:: https://readthedocs.org/projects/eight/badge/?version=latest
+        :target: https://eight.readthedocs.org/

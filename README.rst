@@ -69,6 +69,7 @@ Eight provides a utility function to decode the contents of ``sys.argv`` on Pyth
     eight.decode_command_line_args()
 
 The call to ``decode_command_line_args()`` replaces ``sys.argv`` with its decoded contents and returns the new contents.
+On Python 3, the call is a no-op (it returns ``sys.argv`` and leaves it intact).
 
 Wrapping environment variable getters and setters
 -------------------------------------------------
@@ -81,6 +82,8 @@ Eight provides utility wrappers to help bring Python 2 environment variable acce
 
     import eight
     eight.wrap_os_environ_io()
+
+On Python 3, the call is a no-op.
 
 Selecting from the buffet
 -------------------------

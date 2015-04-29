@@ -132,7 +132,7 @@ Links
 -----
 * `Project home page (GitHub) <https://github.com/kislyuk/eight>`_
 * `Documentation (Read the Docs) <https://eight.readthedocs.org/en/latest/>`_
-* `Package distribution (PyPI) <https://warehouse.python.org/project/eight/>`_
+* `Package distribution (PyPI) <https://pypi.python.org/pypi/eight>`_
 
 Bugs
 ~~~~
@@ -142,13 +142,15 @@ License
 -------
 Licensed under the terms of the `Apache License, Version 2.0 <http://www.apache.org/licenses/LICENSE-2.0>`_.
 
-.. image:: https://travis-ci.org/kislyuk/eight.png
+.. image:: https://img.shields.io/travis/kislyuk/eight.svg
         :target: https://travis-ci.org/kislyuk/eight
-.. image:: https://coveralls.io/repos/kislyuk/eight/badge.png?branch=master
+.. image:: https://img.shields.io/coveralls/kislyuk/eight.svg
         :target: https://coveralls.io/r/kislyuk/eight?branch=master
-.. image:: https://pypip.in/v/eight/badge.png
-        :target: https://warehouse.python.org/project/eight/
-.. image:: https://pypip.in/d/eight/badge.png
-        :target: https://warehouse.python.org/project/eight/
+.. image:: https://img.shields.io/pypi/v/eight.svg
+        :target: https://pypi.python.org/pypi/eight
+.. image:: https://img.shields.io/pypi/dm/eight.svg
+        :target: https://pypi.python.org/pypi/eight
+.. image:: https://img.shields.io/pypi/l/eight.svg
+        :target: https://pypi.python.org/pypi/eight
 .. image:: https://readthedocs.org/projects/eight/badge/?version=latest
         :target: https://eight.readthedocs.org/

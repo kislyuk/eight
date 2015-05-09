@@ -1,3 +1,8 @@
+Version 0.3.1 (2015-05-08)
+--------------------------
+- Do not shim the winreg module unless on NT. This avoids incompatibilities with packages such as CherryPy, which try to load all modules seen by the interpreter.
+- Do not wrap os.getenv, os.putenv multiple times.
+
 Version 0.3.0 (2014-04-21)
 --------------------------
 - Add new utility functions to wrap input and output of command-line arguments and environment variables on Python 2.

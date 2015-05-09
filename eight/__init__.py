@@ -113,8 +113,10 @@ class Loader(object):
         return sys.argv
 
     def wrap_os_environ_io(self):
-        if self.USING_PYTHON2 and not getattr(os, '__native_getenv', None):
+        if self.USING_PYTHON2:
             import os, sys
+            if getattr(os, '__native_getenv', None):
+                return
             native_getenv, native_putenv = os.getenv, os.putenv
 
             def getenv(varname, value=None):

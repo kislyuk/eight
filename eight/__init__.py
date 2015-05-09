@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-import sys
+import os, sys
 
 # Reminder: Don't put any globals here. They will become unusable once we perform the loader trick below.
 
@@ -113,7 +113,7 @@ class Loader(object):
         return sys.argv
 
     def wrap_os_environ_io(self):
-        if self.USING_PYTHON2:
+        if self.USING_PYTHON2 and not getattr(os, '__native_getenv', None):
             import os, sys
             native_getenv, native_putenv = os.getenv, os.putenv
 
@@ -131,6 +131,7 @@ class Loader(object):
                 native_putenv(varname, value)
 
             os.getenv, os.putenv = getenv, putenv
+            os.__native_getenv, os.__native_putenv = native_getenv, native_putenv
 
 from .utils import RedirectingLoader, Move
 
@@ -148,9 +149,11 @@ RENAMES = {'__builtin__': 'builtins',
            'Queue': 'queue',
            'ConfigParser': 'configparser',
            'repr': 'reprlib',
-           '_winreg': 'winreg',
            'thread': '_thread',
            'dummy_thread': '_dummy_thread'}
+
+if os.name == "nt":
+    RENAMES["_winreg"] = "winreg"
 
 for new_module, moves in MOVES.items():
     name = __name__ + '.' + new_module

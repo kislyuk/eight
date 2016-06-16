@@ -131,7 +131,7 @@ Python 3 features.
 Links
 -----
 * `Project home page (GitHub) <https://github.com/kislyuk/eight>`_
-* `Documentation (Read the Docs) <https://eight.readthedocs.org/en/latest/>`_
+* `Documentation (Read the Docs) <https://eight.readthedocs.io/en/latest/>`_
 * `Package distribution (PyPI) <https://pypi.python.org/pypi/eight>`_
 
 Bugs
@@ -153,4 +153,4 @@ Licensed under the terms of the `Apache License, Version 2.0 <http://www.apache.
 .. image:: https://img.shields.io/pypi/l/eight.svg
         :target: https://pypi.python.org/pypi/eight
 .. image:: https://readthedocs.org/projects/eight/badge/?version=latest
-        :target: https://eight.readthedocs.org/
+        :target: https://eight.readthedocs.io/

@@ -1,10 +1,14 @@
-Version 0.3.2 (2015-05-08)
+Version 0.3.4 (???)
 --------------------------
-- Import order fix for 0.3.1
+- Fix redirecting module loader to allow eight.__name__ and return correct error for invalid attribute
 
 Version 0.3.3 (2015-11-06)
 --------------------------
 - Bump python-future dependency
+
+Version 0.3.2 (2015-05-08)
+--------------------------
+- Import order fix for 0.3.1
 
 Version 0.3.1 (2015-05-08)
 --------------------------

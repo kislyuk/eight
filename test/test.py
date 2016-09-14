@@ -51,5 +51,13 @@ class TestEight(unittest.TestCase):
     def test_decode_command_line_args(self):
         pass
 
+    def test_name(self):
+        self.assertEqual(eight.__name__, 'eight')
+
+    def test_nonexistent_attribute(self):
+        with self.assertRaises(AttributeError):
+            eight.foobar
+        self.assertFalse(hasattr(eight, 'foobar'))
+
 if __name__ == '__main__':
     unittest.main()

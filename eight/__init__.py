@@ -70,10 +70,15 @@ class Loader(object):
             return self.__file__
         elif attr == '__loader__':
             return None
+        elif attr == '__name__':
+            return self._name
         elif attr in self._manifest:
             return self._map[attr]
         else:
-            return self._sys.modules[self._name + '.' + attr]
+            try:
+                return self._sys.modules[self._name + '.' + attr]
+            except KeyError:
+                raise AttributeError("'module' object has no attribute '" + attr + "'")
 
     def __dir__(self):
         return list(self._map)

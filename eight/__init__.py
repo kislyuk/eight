@@ -32,12 +32,12 @@ class Loader(object):
             from future.builtins.newround import newround
             from future.builtins.newsuper import newsuper
             from .utils import python2_input
-            self._map = dict(str=unicode,
+            self._map = dict(str=unicode, # noqa
                              bytes=str,
                              input=python2_input,
-                             int=long,
-                             chr=unichr,
-                             range=xrange,
+                             int=long, # noqa
+                             chr=unichr, # noqa
+                             range=xrange, # noqa
                              ascii=future_builtins.ascii,
                              filter=future_builtins.filter,
                              hex=future_builtins.hex,
@@ -46,9 +46,9 @@ class Loader(object):
                              zip=future_builtins.zip,
                              open=io.open,
                              round=newround,
-                             super=newsuper)
+                             super=newsuper) # noqa
         else:
-            self._map['ascii'] = ascii
+            self._map['ascii'] = ascii # noqa
 
         self._map.update(dict(USING_PYTHON2=self.USING_PYTHON2,
                               PY2=self.USING_PYTHON2,
@@ -87,12 +87,13 @@ class Loader(object):
         if self.USING_PYTHON2 and not self._stdio_wrapped:
             import sys, io
             from io import TextIOWrapper
+
             class StderrTextIOWrapper(TextIOWrapper):
                 def write(self, s):
-                    if type(s) is unicode:
+                    if type(s) is unicode: # noqa
                         TextIOWrapper.write(self, s)
                     else:
-                        TextIOWrapper.write(self, unicode(s, self.encoding))
+                        TextIOWrapper.write(self, unicode(s, self.encoding)) # noqa
 
             original_stdin, original_stdout, original_stderr = sys.stdin, sys.stdout, sys.stderr
             sys.stdin = io.open(sys.stdin.fileno(), encoding=sys.stdin.encoding)
@@ -108,7 +109,7 @@ class Loader(object):
     def decode_command_line_args(self):
         if self.USING_PYTHON2:
             import sys
-            sys.argv = [i if isinstance(i, unicode) else i.decode(sys.stdin.encoding) for i in sys.argv]
+            sys.argv = [i if isinstance(i, unicode) else i.decode(sys.stdin.encoding) for i in sys.argv] # noqa
         return sys.argv
 
     def encode_command_line_args(self):
@@ -140,13 +141,13 @@ class Loader(object):
             os.getenv, os.putenv = getenv, putenv
             os.__native_getenv, os.__native_putenv = native_getenv, native_putenv
 
-from .utils import RedirectingLoader, Move
+from .utils import RedirectingLoader, Move # noqa
 
 USING_PYTHON2 = True if sys.version_info < (3, 0) else False
 
 MOVES = {'collections': [Move(new_name='UserList', old_module='UserList', old_name='UserList'),
                          Move(new_name='UserDict', old_module='UserDict', old_name='UserDict'),
-                        Move(new_name='UserString', old_module='UserString', old_name='UserString')],
+                         Move(new_name='UserString', old_module='UserString', old_name='UserString')],
          'itertools': [Move(new_name='filterfalse', old_module='itertools', old_name='ifilterfalse'),
                        Move(new_name='zip_longest', old_module='itertools', old_name='izip_longest')],
          'sys': [Move(new_name='intern', old_module='__builtin__', old_name='intern')]}

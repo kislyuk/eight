@@ -13,7 +13,7 @@ def python2_input(prompt=None):
         if hasattr(sys.stdout, '_original_stream'):
             sys.stdout = sys.stdout._original_stream
         encoded_prompt = prompt.encode(getattr(sys.stdout, 'encoding', 'utf-8'))
-        return raw_input(encoded_prompt).decode(getattr(sys.stdin, 'encoding', 'utf-8'))
+        return raw_input(encoded_prompt).decode(getattr(sys.stdin, 'encoding', 'utf-8')) # noqa
     finally:
         sys.stdin, sys.stdout = cur_stdin, cur_stdout
 

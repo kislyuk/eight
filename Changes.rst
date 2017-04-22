@@ -1,4 +1,5 @@
 
+
 Version 0.3.4 (???)
 --------------------------
 - Fix redirecting module loader to allow eight.__name__ and return correct error for invalid attribute

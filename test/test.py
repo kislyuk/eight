@@ -3,7 +3,7 @@
 
 from __future__ import print_function, unicode_literals
 
-import os, sys, unittest, collections, copy, re, io
+import os, sys, platform, unittest, collections, copy, re, io
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import eight
@@ -22,7 +22,10 @@ class TestEight(unittest.TestCase):
     def test_long_int(self):
         pass
 
+    @unittest.skipIf(eight.USING_PYTHON2 and platform.python_implementation() == "PyPy",
+                     "Skip test that fails on PyPy2.7 due to buggy magic in the sys module")
     def test_stdio_wrappers(self):
+        eight.wrap_stdio()
         eight.wrap_stdio()
         self.assertTrue(hasattr(sys.stdin, 'buffer'))
         sys.stdout.write(u'test')

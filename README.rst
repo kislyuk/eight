@@ -144,11 +144,9 @@ Licensed under the terms of the `Apache License, Version 2.0 <http://www.apache.
 
 .. image:: https://img.shields.io/travis/kislyuk/eight.svg
         :target: https://travis-ci.org/kislyuk/eight
-.. image:: https://img.shields.io/coveralls/kislyuk/eight.svg
-        :target: https://coveralls.io/r/kislyuk/eight?branch=master
+.. image:: https://codecov.io/github/kislyuk/eight/coverage.svg?branch=master
+        :target: https://codecov.io/github/kislyuk/eight?branch=master
 .. image:: https://img.shields.io/pypi/v/eight.svg
-        :target: https://pypi.python.org/pypi/eight
-.. image:: https://img.shields.io/pypi/dm/eight.svg
         :target: https://pypi.python.org/pypi/eight
 .. image:: https://img.shields.io/pypi/l/eight.svg
         :target: https://pypi.python.org/pypi/eight

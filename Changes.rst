@@ -1,3 +1,8 @@
+Changes for v0.4.2 (2017-05-10)
+===============================
+
+-  Fix UnboundLocalError on decode\_command\_line\_args on Python 3 (#8)
+
 
 
 Version 0.3.4 (???)

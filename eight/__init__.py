@@ -107,14 +107,14 @@ class Loader(object):
             self._stdio_wrapped = True
 
     def decode_command_line_args(self):
+        import sys
         if self.USING_PYTHON2:
-            import sys
             sys.argv = [i if isinstance(i, unicode) else i.decode(sys.stdin.encoding) for i in sys.argv] # noqa
         return sys.argv
 
     def encode_command_line_args(self):
+        import sys
         if self.USING_PYTHON2:
-            import sys
             sys.argv = [i if isinstance(i, str) else i.encode(sys.stdin.encoding) for i in sys.argv]
         return sys.argv
 

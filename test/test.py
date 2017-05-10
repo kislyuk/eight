@@ -52,7 +52,8 @@ class TestEight(unittest.TestCase):
         self.assertTrue("переменная" in os.environ)
 
     def test_decode_command_line_args(self):
-        pass
+        eight.decode_command_line_args()
+        eight.encode_command_line_args()
 
     def test_name(self):
         self.assertEqual(eight.__name__, 'eight')

@@ -1,3 +1,10 @@
+Changes for v1.0.0 (2019-12-01)
+===============================
+
+-  Bump future dependency version range
+
+-  Package is stable
+
 Changes for v0.4.2 (2017-05-10)
 ===============================
 
